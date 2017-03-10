@@ -20,25 +20,30 @@
 	<!-- END BOOTSRAP -->
 </head>
 <body class="container">
-	<form action="pay.php" method="post">
+	<form action="pay.php" method="post" class="form-horizontal">
 		<fieldset> <legend>Bank Card Informations</legend>
-<div class="row">
-			<label class="col-md-2">Card number</label>
-			<input type="text" name="cardNumber" maxlength="16" class="col-md-2">
-</div>
-<div class="row">
-			<label class="col-md-2">End date</label>
-			<input type="text" name="endDate" id="datepicker" class="col-md-2" readonly>
-			
-</div>
-<div class="row">
-			<label class="col-md-2">CVV</label>
-			<input type="text" name="cvv" maxlength="3" class="col-md-2">
-</div>
-<div class="row">
-			<button type="submit" class="btn btn-primary col-md-2">Send</button>
-			<button type="reset" class="btn btn-danger col-md-2">Reset</button>
-</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Card number</label>
+			<div class="col-sm-2">
+				<input type="text" name="cardNumber" maxlength="16" class="form-control">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">End date</label>
+			<div class="col-sm-2">
+				<input type="text" name="endDate" id="datepicker" class="form-control" readonly>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">CVV</label>
+			<div class="col-sm-1">
+				<input type="text" name="cvv" maxlength="3" class="form-control">
+			</div>
+		</div>
+		<div class="row">
+			<button type="submit" class="btn btn-primary col-sm-2">Send</button>
+			<button type="reset" class="btn btn-danger col-sm-2">Reset</button>
+		</div>
 		</fieldset>
 	</form>
 </body>
