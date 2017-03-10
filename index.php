@@ -21,30 +21,59 @@
 </head>
 <body class="container">
 	<form action="pay.php" method="post" class="form-horizontal">
-		<fieldset> <legend>Bank Card Informations</legend>
-		<div class="form-group">
-			<label class="col-sm-2 control-label">Card number</label>
-			<div class="col-sm-2">
-				<input type="text" name="cardNumber" maxlength="16" class="form-control">
-			</div>
-		</div>
-		<div class="form-group">
-			<label class="col-sm-2 control-label">End date</label>
-			<div class="col-sm-2">
-				<input type="text" name="endDate" id="datepicker" class="form-control" readonly>
-			</div>
-		</div>
-		<div class="form-group">
-			<label class="col-sm-2 control-label">CVV</label>
-			<div class="col-sm-1">
-				<input type="text" name="cvv" maxlength="3" class="form-control">
-			</div>
-		</div>
-		<div class="row">
-			<button type="submit" class="btn btn-primary col-sm-2">Send</button>
-			<button type="reset" class="btn btn-danger col-sm-2">Reset</button>
-		</div>
+		<fieldset class="row col-sm-4 col-sm-offset-4"> <legend>Market</legend>
+			<div class="form-group">
+				<div class="col-sm-9 col-sm-offset-1">
+					<select name="market" class="form-control">
+							<option value="3000">Fursuit - 3000$</option>
+							<option value="5">Strawberries - 5$</option>
+							<option value="60">Zelda Breath of the Wild - 60$</option>
+							<option value="50">Myre Chronicles of Yria - 50$</option>
+							<option value="15">BluRay Zootopia - 15$</option>
+					</select>
+				</div>
+			</div>			
 		</fieldset>
+	<div class="row">
+		<fieldset class="col-sm-6"> <legend>Personnal Informations</legend>
+			<div class="form-group">
+				<label class="col-sm-4 control-label">First Name</label>
+				<div class="col-sm-4">
+					<input type="text" name="firstName" maxlength="50" class="form-control">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-4 control-label">Last Name</label>
+				<div class="col-sm-4">
+					<input type="text" name="lastName" maxlength="50" class="form-control">
+				</div>
+			</div>
+			
+		</fieldset>
+
+		<fieldset class="col-sm-6"> <legend>Bank Card Informations</legend>
+			<div class="form-group">
+				<label class="col-sm-4 control-label">Card number</label>
+				<div class="col-sm-4">
+					<input type="text" name="cardNumber" minlength="16" maxlength="16" class="form-control">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-4 control-label">End date</label>
+				<div class="col-sm-4">
+					<input type="text" name="endDate" id="datepicker" class="form-control" readonly>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-4 control-label">CVV</label>
+				<div class="col-sm-2">
+					<input type="text" name="cvv" minlength="3" maxlength="3" class="form-control">
+				</div>
+			</div>
+		</fieldset>
+		<button type="submit" class="btn btn-primary col-sm-2 col-sm-offset-4">Send</button>
+		<button type="reset" class="btn btn-danger col-sm-2">Reset</button>
+	</div>
 	</form>
 </body>
 </html>
