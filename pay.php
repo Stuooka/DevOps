@@ -1,9 +1,14 @@
 <?php 
+	// All users are stored in $users[]
+	include 'getUser.php';
+
 	$errorMsg = array();
+	$headerUsr = false;
 	$headerNbr = false;
 	$headerCvv = false;
+	$foundUser = false;
 
-	if($_POST['cardNumber'] != '' && $_POST['endDate'] != '' && $_POST['cvv'] != ''){
+	if($_POST['firstName'] != '' && $_POST['lastName'] != '' && $_POST['cardNumber'] != '' && $_POST['expirationDate'] != '' && $_POST['cvv'] != ''){
 		/* CARD NUMBER*/
 		if(strlen($_POST['cardNumber']) != 16){
 			$errorMsg[] = '--Card Number--';
@@ -19,7 +24,7 @@
 		$now = new \DateTime('now');
 		$nowMonth = $now->format('m');
 		$nowYear = $now->format('Y');
-		$date = explode('/', $_POST['endDate']);
+		$date = explode('/', $_POST['expirationDate']);
 		if(((int)$date[1] < $nowYear) || ((int)$date[1] == $nowYear && (int)$date[0] < $nowMonth)){
 			$errorMsg[] = '--End Date--';
 			$errorMsg[] = '   Card expired';
@@ -40,7 +45,22 @@
 		if(sizeof($errorMsg)>0){
 			errorRedirect($errorMsg);
 		}else{
-			echo 'Payment sent';
+			foreach ($users as $user) {
+				//Data's format is correct. Now we test if the datas themselves are corret, if the user exist.
+				if(strtolower($_POST['firstName']) == strtolower($user['firstName']) && strtolower($_POST['lastName']) == strtolower($user['lastName']) 
+					&& $_POST['cardNumber'] == $user['cardNumber'] && $_POST['expirationDate'] == $user['expirationDate'] 
+					&& $_POST['cvv'] == $user['cvv']){
+					$foundUser = true;
+				}
+			}
+			if(!$foundUser) 
+				$errorMsg[] = 'Unknown user. Please be sure you\'ve entered the right informations';
+
+			if(sizeof($errorMsg)>0){
+				errorRedirect($errorMsg);
+			}else{
+				echo 'Payment sent';
+			}
 		}
 	}else{
 		$errorMsg[] = 'Please, fill all datas'; 
@@ -51,15 +71,15 @@
  function errorRedirect($messages)
  {
  	$msg= '';
-
  	for ($i=0; $i < count($messages); $i++) {
  		$msg .= $messages[$i] . "\\n";
  	}
-	echo 
-	'<script type="text/javascript">
-		alert(\''.$msg.'\');
-		window.location.href = \'index.php\';
-	</script>';
+ 	var_dump($msg);
+	echo( 
+		'<script type="text/javascript">
+			alert(\''.$msg.'\');
+			window.location.href = \'index.php\';
+		</script>');
 	$errorMsg[] = array();
  }
  ?>

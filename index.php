@@ -7,6 +7,7 @@
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<link rel="stylesheet" type="text/css" id="theme" href=""/>
 	<script src="https://use.fontawesome.com/ccf55cb418.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
 	<!-- START BOOTSRAP -->
 		<!-- Latest compiled and minified CSS -->
@@ -59,9 +60,9 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-4 control-label">End date</label>
+				<label class="col-sm-4 control-label">Expiration date</label>
 				<div class="col-sm-4">
-					<input type="text" name="endDate" id="datepicker" class="form-control" readonly>
+					<input type="text" name="expirationDate" id="datepicker" class="form-control" readonly>
 				</div>
 			</div>
 			<div class="form-group">
