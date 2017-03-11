@@ -7,6 +7,7 @@
 	$headerNbr = false;
 	$headerCvv = false;
 	$foundUser = false;
+	$correctUser = array();
 
 	if($_POST['firstName'] != '' && $_POST['lastName'] != '' && $_POST['cardNumber'] != '' && $_POST['expirationDate'] != '' && $_POST['cvv'] != ''){
 		/* CARD NUMBER*/
@@ -51,6 +52,7 @@
 					&& $_POST['cardNumber'] == $user['cardNumber'] && $_POST['expirationDate'] == $user['expirationDate'] 
 					&& $_POST['cvv'] == $user['cvv']){
 					$foundUser = true;
+					$correctUser = $user;
 				}
 			}
 			if(!$foundUser) 
@@ -59,7 +61,16 @@
 			if(sizeof($errorMsg)>0){
 				errorRedirect($errorMsg);
 			}else{
-				echo 'Payment sent';
+				if((float)$correctUser['accountMoney'] >= (float)$_POST['market']*5){
+					echo(
+						'Payment sent <br>
+						<a href="index.php"><button><-- Go back</button></a>' 
+					);
+				}else{
+					$maxMoneyNeeded = (float)$_POST['market']*5;
+					$errorMsg[] = "Payment refused ! You need at least ".$maxMoneyNeeded." $ in your account to buy that item.";
+					errorRedirect($errorMsg);
+				}
 			}
 		}
 	}else{
@@ -74,7 +85,7 @@
  	for ($i=0; $i < count($messages); $i++) {
  		$msg .= $messages[$i] . "\\n";
  	}
- 	var_dump($msg);
+
 	echo( 
 		'<script type="text/javascript">
 			alert(\''.$msg.'\');
