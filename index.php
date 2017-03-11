@@ -76,6 +76,40 @@
 		<button type="reset" class="btn btn-danger col-sm-2">Reset</button>
 	</div>
 	</form>
+
+<hr>
+
+	<table class="table table-striped table-bordered table-hover">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Card number</th>
+				<th>Expiration date</th>
+				<th>CVV</th>
+				<th>Money</th>
+			</tr>
+		</thead>
+		<?php 
+			include 'getUser.php';
+			echo '<tbody>';
+				foreach ($users as $user) {
+					echo(
+						'<tr>
+							<td>'.$user['id'].'</td>
+							<td>'.$user['firstName'].'</td>
+							<td>'.$user['lastName'].'</td>
+							<td>'.$user['cardNumber'].'</td>
+							<td>'.$user['expirationDate'].'</td>
+							<td>'.$user['cvv'].'</td>
+							<td>'.$user['accountMoney'].' $</td>
+						</tr>'
+					);
+				} 
+		?>
+		</tbody>
+	</table>
 </body>
 </html>
 
