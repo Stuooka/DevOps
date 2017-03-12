@@ -8,7 +8,7 @@
 	$editMoney = $_POST['market'];
 
 	$req = $db->prepare('UPDATE user 
-						 SET accountMoney -= :accountMoney
+						 SET accountMoney = accountMoney - :accountMoney
 						 WHERE id = :id');
 	try{
 		$req->execute(array(
