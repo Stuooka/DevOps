@@ -62,10 +62,22 @@
 				errorRedirect($errorMsg);
 			}else{
 				if((float)$correctUser['accountMoney'] >= (float)$_POST['market']*5){
-					echo(
-						'Payment sent <br>
-						<a href="index.php"><button><-- Go back</button></a>' 
-					);
+					include 'editUser.php';
+					if($editSuccess){
+						include 'addPendingPayment.php';
+						if($addPaymentSuccess){
+							echo(
+								'Transaction validated ! Your payment will be sent in 7 days. <br>
+								<a href="index.php"><button><-- Go back</button></a>' 
+							);
+						}else{
+							$errorMsg[] = "Something wrong happened. Unable to access database (addPendingPayment)";
+							errorRedirect($errorMsg);
+						}
+					}else{
+						$errorMsg[] = "Something wrong happened. Unable to access database (editUser)";
+						errorRedirect($errorMsg);
+					}
 				}else{
 					$maxMoneyNeeded = (float)$_POST['market']*5;
 					$errorMsg[] = "Payment refused ! You need at least ".$maxMoneyNeeded." $ in your account to buy that item.";
